@@ -1,0 +1,152 @@
+<html>
+<head>
+    <title>Private Club</title>
+    <link href="css/styles.css" rel="stylesheet" />
+</head>
+<body>
+    <div class='header'><h1>Private Club</h1></div>
+    <div class="app-img">
+        <img src="img/Andy_Bernard.jpg" />
+    </div>
+    <div class="new-user-registration-link">
+        <input type="button" id="new-user-button" value="Register new user" />
+    </div>
+    <div class="new-user-registration" hidden="hidden">
+        The auto generated login id and passwords are:
+        <div class="input-line">
+            <label>Login Id</label>
+            <label id="login-id-label"></label>
+        </div>
+        <div class="input-line">
+            <label>Password</label>
+            <label id="password-label"></label>
+        </div>
+        <div class="input-line">
+            <label>Enter email</label>
+            <input type="text" id="email" />
+        </div>
+        <div class="input-line">
+            <label>Terms and Conditions</label>
+            <input type="checkbox" id="terms-check" />
+        </div>
+        <div class="input-line">
+            <input type="button" id="save-info-button" value="Save user info" />
+        </div>
+    </div>
+    <div class="profile" hidden="hidden">
+        <div class="input-line">
+            <label>Sex</label>
+            <input type="text" list="sex" id="sex-list">
+            <datalist id="sex">
+                <option> Male
+                <option> Female
+            </datalist>
+        </div>
+        <div class="input-line">
+            <label>Age</label>
+            <input type="range" id="age" min="18" max="50" />
+        </div>
+        <div class="input-line">
+            <label>Weight (kgs)</label>
+            <input type="range" id="weight" min="45" max="100" />
+        </div>
+        <div class="input-line">
+            <label>Height (cms)</label>
+            <input type="range" id="height" min="160" max="210" />
+        </div>
+        <div class="input-line">
+            <label>Time for Dating</label>
+            <input type="datetime" id="time-for-dating" />
+        </div>
+        <div class="input-line">
+            <label>Default recording</label>
+            <input type="button" id="record-audio-button" value="Record audio" />
+        </div>
+        <div class="input-line">
+            <input type="button" id="save-profile-button" value="Save and update profile" />
+        </div>
+    </div>
+    <div class="audio" hidden="hidden">
+        <div class="input-line">
+            <label>Record audio</label>
+            <input type="button" id="start-record-button" value="Start record" />
+            <input type="button" id="stop-record-button" value="Stop record" />
+        </div>
+        <div class="input-line">
+            <label>Play audio</label>
+            <input type="button" id="play-button" value="Play audio" />
+            <input type="button" id="stop-button" value="Stop audio" />
+        </div>
+        <div class="input-line">
+            <input type="button" id="record-complete-button" value="Back to profile" />
+        </div>
+    </div>
+    <div class="search-profile" hidden="hidden">
+        <div class="input-line">
+            <label>Sex</label>
+            <input type="text" list="sex" id="sex-list">
+            <datalist id="sex">
+                <option> Male
+                <option> Female
+            </datalist>
+        </div>
+        <div class="input-line">
+            <label>Age</label>
+            <input type="range" id="age" min="18" max="50" />
+        </div>
+        <div class="input-line">
+            <label>Weight (kgs)</label>
+            <input type="range" id="weight" min="45" max="100" />
+        </div>
+        <div class="input-line">
+            <label>Height (cms)</label>
+            <input type="range" id="height" min="160" max="210" />
+        </div>
+        <div class="input-line">
+            <label>Time for Dating</label>
+            <input type="datetime" id="time-for-dating" />
+        </div>
+    </div>
+    <div class="online-users" hidden="hidden">
+        <div class="input-line">
+            <label>Sex</label>
+            <input type="text" list="sex" id="sex-list">
+            <datalist id="sex">
+                <option> Male
+                <option> Female
+            </datalist>
+        </div>
+        <div class="input-line">
+            <label>Age</label>
+            <input type="range" id="age" min="18" max="50" />
+        </div>
+        <div class="input-line">
+            <label>Weight (kgs)</label>
+            <input type="range" id="weight" min="45" max="100" />
+        </div>
+        <div class="input-line">
+            <label>Height (cms)</label>
+            <input type="range" id="height" min="160" max="210" />
+        </div>
+        <div class="input-line">
+            <label>Time for Dating</label>
+            <input type="datetime" id="time-for-dating" />
+        </div>
+    </div>
+    <div class="login-block">
+        <div class="input-line">
+            <label>Login Id</label>
+            <input type="text" id="loginid" />
+        </div>
+        <div class="input-line">
+            <label>Password</label>
+            <input type="text" id="password" />
+        </div>
+        <input type="button" id="login-button" value="Login" />
+    </div>
+    <script src="phonegap.js"></script>
+    <script src="lib/jquery-1.8.2.min.js"></script>
+    <script src="js/storage/ls-store.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
