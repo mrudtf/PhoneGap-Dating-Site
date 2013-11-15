@@ -36,11 +36,10 @@
     <div class="profile" hidden="hidden">
         <div class="input-line">
             <label>Sex</label>
-            <input type="text" list="sex" id="sex-list">
-            <datalist id="sex">
-                <option> Male
-                <option> Female
-            </datalist>
+            <select>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
         </div>
         <div class="input-line">
             <label>Age</label>
@@ -106,6 +105,9 @@
             <label>Time for Dating</label>
             <input type="datetime" id="time-for-dating" />
         </div>
+        <div class="input-line">
+            <input type="button" id="save-search-profile-button" value="Save search profile" />
+        </div>
     </div>
     <div class="online-users" hidden="hidden">
         <div class="input-line">
@@ -142,7 +144,9 @@
             <label>Password</label>
             <input type="text" id="password" />
         </div>
-        <input type="button" id="login-button" value="Login" />
+        <div class="input-line">
+            <input type="button" id="login-button" value="Login" />
+        </div>
     </div>
     <script src="phonegap.js"></script>
     <script src="lib/jquery-1.8.2.min.js"></script>

@@ -12,7 +12,7 @@ var app = {
             $('.profile').toggle(false);
             $('.audio').toggle(false);
             $('.search-profile').toggle(false);
-            $('online-users').toggle(false);
+            $('.online-users').toggle(false);
             $('.login-block').toggle(false);
         })
 
@@ -22,6 +22,10 @@ var app = {
 
         $('#save-profile-button').bind('click', function () {
             app.saveProfile();
+        })
+
+        $('#save-search-profile-button').bind('click', function () {
+            app.saveSearchPreferences();
         })
 
         $('#record-audio-button').bind('click', function () {
@@ -50,7 +54,7 @@ var app = {
             $('.profile').toggle(true);
             $('.audio').toggle(false);
             $('.search-profile').toggle(false);
-            $('online-users').toggle(false);
+            $('.online-users').toggle(false);
             $('.login-block').toggle(false);
         })
     },
@@ -91,7 +95,7 @@ var app = {
         $('.profile').toggle(false);
         $('.audio').toggle(true);
         $('.search-profile').toggle(false);
-        $('online-users').toggle(false);
+        $('.online-users').toggle(false);
         $('.login-block').toggle(false);
     },
 
@@ -102,7 +106,7 @@ var app = {
         $('.profile').toggle(true);
         $('.audio').toggle(false);
         $('.search-profile').toggle(false);
-        $('online-users').toggle(false);
+        $('.online-users').toggle(false);
         $('.login-block').toggle(false);
     },
 
@@ -113,7 +117,7 @@ var app = {
         $('.profile').toggle(false);
         $('.audio').toggle(false);
         $('.search-profile').toggle(true);
-        $('online-users').toggle(false);
+        $('.online-users').toggle(false);
         $('.login-block').toggle(false);
     },
 
@@ -124,7 +128,7 @@ var app = {
         $('.profile').toggle(false);
         $('.audio').toggle(false);
         $('.search-profile').toggle(false);
-        $('online-users').toggle(true);
+        $('.online-users').toggle(true);
         $('.login-block').toggle(false);
     },
 
@@ -135,7 +139,7 @@ var app = {
         $('.profile').toggle(false);
         $('.audio').toggle(true);
         $('.search-profile').toggle(false);
-        $('online-users').toggle(false);
+        $('.online-users').toggle(false);
         $('.login-block').toggle(false);
     },
 

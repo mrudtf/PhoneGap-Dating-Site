@@ -204,3 +204,23 @@ h2 {
 .login-block{
 
 }
+
+.input-line {
+    padding: 5px 0px 5px 5px;
+    width:200px;
+}
+
+.input-line label{
+    width:100px;
+    float:left;
+}
+
+.input-line input{
+    width:100px;
+    float:left;
+}
+
+.input-line input[type="button"]{
+    width:100px;
+    float:left;
+}
