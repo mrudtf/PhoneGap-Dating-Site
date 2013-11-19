@@ -8,7 +8,7 @@ var app = {
             $('#password-label').text(password);
 
             $('.new-user-registration-link').toggle(false);
-            $('.new-user-registration').toggle(true);
+            $('.new-user-registration').fadeToggle(true);
             $('.profile').toggle(false);
             $('.audio').toggle(false);
             $('.search-profile').toggle(false);
@@ -51,12 +51,20 @@ var app = {
         $('#record-complete-button').bind('click', function () {
             $('.new-user-registration-link').toggle(false);
             $('.new-user-registration').toggle(false);
-            $('.profile').toggle(true);
+            $('.profile').slideToggle(true);
             $('.audio').toggle(false);
             $('.search-profile').toggle(false);
             $('.online-users').toggle(false);
             $('.login-block').toggle(false);
         })
+    },
+
+    validateEmail: function () {
+        var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+        if (reg.test(user.Email.val()) === false) {
+            return false;
+        }
+        return true;
     },
 
     randomString: function (length, chars) {
@@ -93,7 +101,7 @@ var app = {
         $('.new-user-registration-link').toggle(false);
         $('.new-user-registration').toggle(false);
         $('.profile').toggle(false);
-        $('.audio').toggle(true);
+        $('.audio').slideToggle(true);
         $('.search-profile').toggle(false);
         $('.online-users').toggle(false);
         $('.login-block').toggle(false);
@@ -101,13 +109,51 @@ var app = {
 
     saveInfo: function () {
         console.log('saveInfo');
+        if ($('#terms-check').is(":checked")) {
+            if (app.validateEmail()) {
+                var input =
+                    {
+                        "AddUser": {
+                            "user":
+                            {
+                                "LoginId": user.LoginId.text(),
+                                "Password": user.Password.text(),
+                                "Email": user.Email.val()
+                            }
+                        }
+                    };
+                $.ajax({
+                    type: "POST",
+                    url: "http://localhost:36908/DatingService.svc/AddUser",
+                    data: JSON.stringify(input),
+                    contentType: 'application/json; charset=utf-8',
+                    dataType: "json",
+                    success: app.onSaveSuccess,
+                    error: app.onSaveError
+                });
+            }
+            else {
+                $('.error-label').text('Invalid email address.');
+            }
+        }
+        else {
+            $('.error-label').text('Please check the terms and conditions.');
+        }
+    },
+
+    onSaveSuccess: function (data) {
+        $('#userid').val(data.UserId);
         $('.new-user-registration-link').toggle(false);
         $('.new-user-registration').toggle(false);
-        $('.profile').toggle(true);
+        $('.profile').slideToggle(true);
         $('.audio').toggle(false);
         $('.search-profile').toggle(false);
         $('.online-users').toggle(false);
         $('.login-block').toggle(false);
+    },
+
+    onSaveError: function (xhr, ajaxOptions, error) {
+        $('.error-label').text(xhr.responseText);
     },
 
     saveProfile: function () {
@@ -116,7 +162,7 @@ var app = {
         $('.new-user-registration').toggle(false);
         $('.profile').toggle(false);
         $('.audio').toggle(false);
-        $('.search-profile').toggle(true);
+        $('.search-profile').slideToggle(true);
         $('.online-users').toggle(false);
         $('.login-block').toggle(false);
     },
@@ -128,7 +174,7 @@ var app = {
         $('.profile').toggle(false);
         $('.audio').toggle(false);
         $('.search-profile').toggle(false);
-        $('.online-users').toggle(true);
+        $('.online-users').slideToggle(true);
         $('.login-block').toggle(false);
     },
 
@@ -137,7 +183,7 @@ var app = {
         $('.new-user-registration-link').toggle(false);
         $('.new-user-registration').toggle(false);
         $('.profile').toggle(false);
-        $('.audio').toggle(true);
+        $('.audio').slideToggle(true);
         $('.search-profile').toggle(false);
         $('.online-users').toggle(false);
         $('.login-block').toggle(false);
@@ -160,3 +206,16 @@ var app = {
 };
 
 app.initialize();
+
+var user = {
+    UserId: $('#userid'),
+    LoginId: $('#login-id-label'),
+    Password: $('#password-label'),
+    Email: $('#email'),
+    Sex: $('#sex'),
+    Age: $('#record-complete-button'),
+    Weight: $('#record-complete-button'),
+    Height: $('#record-complete-button'),
+    TimeForDating: $('#record-complete-button'),
+    Recording: $('#record-complete-button')
+};

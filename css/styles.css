@@ -190,7 +190,6 @@ h2 {
 }
 
 .app-img{
-
 }
 
 .new-user-link{
@@ -223,4 +222,8 @@ h2 {
 .input-line input[type="button"]{
     width:100px;
     float:left;
+}
+
+.error-label{
+    color:red;
 }

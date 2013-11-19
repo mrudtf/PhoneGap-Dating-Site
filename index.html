@@ -8,6 +8,12 @@
     <div class="app-img">
         <img src="img/Andy_Bernard.jpg" />
     </div>
+    <div>
+        <label class="error-label"></label>
+    </div>
+    <div hidden="hidden">
+        <input type="hidden" id="userid" value=" " />
+    </div>
     <div class="new-user-registration-link">
         <input type="button" id="new-user-button" value="Register new user" />
     </div>
@@ -36,7 +42,7 @@
     <div class="profile" hidden="hidden">
         <div class="input-line">
             <label>Sex</label>
-            <select>
+            <select id="sex">
                 <option value="male">Male</option>
                 <option value="female">Female</option>
             </select>
