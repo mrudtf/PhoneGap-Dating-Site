@@ -1,23 +1,24 @@
 <html>
 <head>
-    <title>Private Club</title>
+    <title>Dark Room</title>
     <link href="css/styles.css" rel="stylesheet" />
 </head>
 <body>
-    <div class='header'><h1>Private Club</h1></div>
-    <div class="app-img">
-        <img src="img/Andy_Bernard.jpg" />
+    <div class="splash">
+        <div><h1>Dark Room</h1></div>
+        <div class="app-img">
+            <img src="img/Andy_Bernard.jpg" />
+        </div>
     </div>
+    <div class="busy">Loading...</div>
+    <div class="header"><h1>Dark Room</h1></div>
     <div>
         <label class="error-label"></label>
     </div>
     <div hidden="hidden">
         <input type="hidden" id="userid" value=" " />
     </div>
-    <div class="new-user-registration-link">
-        <input type="button" id="new-user-button" value="Register new user" />
-    </div>
-    <div class="new-user-registration" hidden="hidden">
+    <div class="new-user-registration">
         The auto generated login id and passwords are:
         <div class="input-line">
             <label>Login Id</label>
@@ -39,7 +40,7 @@
             <input type="button" id="save-info-button" value="Save user info" />
         </div>
     </div>
-    <div class="profile" hidden="hidden">
+    <div class="profile">
         <div class="input-line">
             <label>Sex</label>
             <select id="sex">
@@ -71,7 +72,7 @@
             <input type="button" id="save-profile-button" value="Save and update profile" />
         </div>
     </div>
-    <div class="audio" hidden="hidden">
+    <div class="audio">
         <div class="input-line">
             <label>Record audio</label>
             <input type="button" id="start-record-button" value="Start record" />
@@ -86,7 +87,7 @@
             <input type="button" id="record-complete-button" value="Back to profile" />
         </div>
     </div>
-    <div class="search-profile" hidden="hidden">
+    <div class="search-profile">
         <div class="input-line">
             <label>Sex</label>
             <input type="text" list="sex" id="sex-list">
@@ -115,13 +116,13 @@
             <input type="button" id="save-search-profile-button" value="Save search profile" />
         </div>
     </div>
-    <div class="online-users" hidden="hidden">
+    <div class="online-users">
         <div class="input-line">
             <label>Sex</label>
             <input type="text" list="sex" id="sex-list">
             <datalist id="sex">
-                <option> Male
-                <option> Female
+                <option value="0"> Male</option>
+                <option value="1"> Female</option>
             </datalist>
         </div>
         <div class="input-line">
@@ -144,15 +145,25 @@
     <div class="login-block">
         <div class="input-line">
             <label>Login Id</label>
-            <input type="text" id="loginid" />
+        </div>
+        <div class="input-line">
+            <input type="text" id="login-id-text" />
         </div>
         <div class="input-line">
             <label>Password</label>
-            <input type="text" id="password" />
+        </div>
+        <div class="input-line">
+            <input type="text" id="password-text" />
+        </div>
+        <div class="input-line">
+            <label><input type="checkbox" id="save-login" />Save login</label>
         </div>
         <div class="input-line">
             <input type="button" id="login-button" value="Login" />
         </div>
+    </div>
+    <div class="new-user-registration-link">Need an account?         
+        <a id="new-user-button" href="#">Sign Up</a>
     </div>
     <script src="phonegap.js"></script>
     <script src="lib/jquery-1.8.2.min.js"></script>

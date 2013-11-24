@@ -22,6 +22,10 @@ var LocalStorageStore = function(successCallback, errorCallback) {
         callLater(callback, employee);
     }
 
+    this.storeLoginId = function (loginId) {
+        window.localStorage.setItem("loginId", loginId);
+    }
+
     // Used to simulate async calls. This is done to provide a consistent interface with stores (like WebSqlStore)
     // that use async data access APIs
     var callLater = function(callback, data) {

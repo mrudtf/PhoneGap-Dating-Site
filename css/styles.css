@@ -189,7 +189,33 @@ h2 {
     height:100px;
 }
 
+.busy {
+	display:none;
+	position: absolute;
+	top: 50%;
+ 	left: 50%;
+	margin-left: -65px;
+	margin-top: -31px;
+	color: #FFFFFF;
+	font-size: 24px;	
+	z-index:6;
+	background-color: #000000;
+	opacity:0.5;
+ 	width:100px;
+	height:32px;
+	padding: 30px;
+	-moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -khtml-border-radius: 10px;
+    border-radius: 10px;	
+}
+
+.splash{
+
+}
+
 .app-img{
+
 }
 
 .new-user-link{
@@ -201,27 +227,44 @@ h2 {
 }
 
 .login-block{
-
+    width:200px;
+    height:150px;
+    border:1px solid;
 }
 
 .input-line {
-    padding: 5px 0px 5px 5px;
-    width:200px;
+    width:150px;
 }
 
 .input-line label{
+    display:block;
     width:100px;
-    float:left;
+
+    padding-left: 15px;
+    text-indent: -15px;
 }
 
 .input-line input{
     width:100px;
+
+    padding: 0;
+    margin:0;
+    vertical-align: bottom;
+    position: relative;
+    top: -1px;
+    *overflow: hidden;
+}
+
+.input-line input[type="checkbox"]{
+    width:100px;
+    right:0px;
     float:left;
 }
 
 .input-line input[type="button"]{
     width:100px;
     float:left;
+    height:20px;
 }
 
 .error-label{
