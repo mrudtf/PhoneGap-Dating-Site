@@ -1,27 +1,56 @@
+localStorage['serviceURL'] = "http://localhost:36908/DatingService.svc/";
+var serviceURL = localStorage['serviceURL'];
+
+var scroll = new iScroll('wrapper', { vScrollbar: false, hScrollbar: false, hScroll: false });
+
 var app = {
 
-    logIn: function () {
-        console.log('logIn');
+    getUserlist: function () {
+        $('#busy').show();
+        $.ajax({
+            type: "GET",
+            url: serviceURL + 'GetAllUsers',
+            contentType: 'application/json; charset=utf-8',
+            dataType: "json",
+            success: app.onGetSuccess,
+            error: app.onAjaxError
+        });
+    },
 
-        var input =
-            {
-                "user": {
-                    "UserId": null,
-                    "LoginId": user.LoginId,
-                    "Password": user.Password,
-                    "Email": null,
-                    "Sex": null,
-                    "Age": null,
-                    "Weight": null,
-                    "Height": null,
-                    "TimeForDating": null,
-                    "Recording": null
-                }
-            };
+    onGetSuccess: function (data) {
+        $('#busy').hide();
+        $('#userList li').remove();
+        users = data.GetAllUsersResult;
+        $.each(users, app.loadData);
+        setTimeout(function () {
+            scroll.refresh();
+        });
+        $('.header').toggle(true);
+        $('.splash').toggle(false);
+        $('.new-user-registration-link').toggle(false);
+        $('.new-user-registration-password').toggle(false);
+        $('.new-user-registration-email').toggle(false);
+        $('.profile').toggle(false);
+        $('.audio').toggle(false);
+        $('.search-profile').toggle(false);
+        $('#wrapper').toggle(true);
+        $('.login-block').toggle(false);
+        $('.forgot-login-link').toggle(false);
+    },
+
+    loadData: function (index, user) {
+        $('#userList').append('<li><a href="userdetails.html?id=' + user.UserId + '">' +
+                '<p class="line1">' + index + 1 + ' ' + user.LoginId + '</p>' +
+                '<p class="line2">' + user.Height + ' ' + user.Weight + '</p>' + '</a></li>');
+    },
+
+    logIn: function () {
+        //console.log('logIn');
+        app.clearError();
         $.ajax({
             type: "POST",
-            url: "http://localhost:36908/DatingService.svc/ValidateUser",
-            data: JSON.stringify(input),
+            url: serviceURL + 'ValidateUser',
+            data: '{"loginId": "' + $('#login-id-text').val() + '", "password": "' + $('#password-text').val() + '"}',
             contentType: 'application/json; charset=utf-8',
             dataType: "json",
             success: app.onValidateSuccess,
@@ -36,10 +65,20 @@ var app = {
             if ($('#save-login').is(":checked")) {
                 this.store.storeLoginId(data.ValidateUserResult.loginId);
             }
+            app.showAlert('Your search preferences are outdated. Please update.', 'Search Preferences');
+            app.getUserlist();
         }
         else {
-            $('.error-label').text('Username and password is not correct.');
+            app.setError('Username and password is not correct.');
         }
+    },
+
+    setError: function (message) {
+        $('.error-label').text(message);
+    },
+
+    clearError: function () {
+        $('.error-label').text('');
     },
 
     showAlert: function (message, title) {
@@ -55,12 +94,14 @@ var app = {
         $('.header').toggle(false);
         $('.splash').toggle(true);
         $('.new-user-registration-link').toggle(false);
-        $('.new-user-registration').toggle(false);
+        $('.new-user-registration-password').toggle(false);
+        $('.new-user-registration-email').toggle(false);
         $('.profile').toggle(false);
         $('.audio').toggle(false);
         $('.search-profile').toggle(false);
-        $('.online-users').toggle(false);
+        $('#wrapper').toggle(false);
         $('.login-block').toggle(false);
+        $('.forgot-login-link').toggle(false);
         setTimeout(this.initialize(), 100);
     },
 
@@ -69,31 +110,40 @@ var app = {
         $('.header').toggle(true);
         $('.splash').toggle(false);
         $('.new-user-registration-link').toggle(true);
-        $('.new-user-registration').toggle(false);
+        $('.new-user-registration-password').toggle(false);
+        $('.new-user-registration-email').toggle(false);
         $('.profile').toggle(false);
         $('.audio').toggle(false);
         $('.search-profile').toggle(false);
-        $('.online-users').toggle(false);
+        $('#wrapper').toggle(false);
         $('.login-block').toggle(true);
+        $('.forgot-login-link').toggle(true);
 
         $('#new-user-button').bind('click', function () {
-            var loginId = app.randomString(6, '#aA');
-            var password = app.randomString(6, '#');
-            $('#login-id-label').text(loginId);
-            $('#password-label').text(password);
-
             $('.splash').toggle(false);
             $('.new-user-registration-link').toggle(false);
-            $('.new-user-registration').toggle(true);
+            $('.new-user-registration-password').toggle(true);
+            $('.new-user-registration-email').toggle(false);
             $('.profile').toggle(false);
             $('.audio').toggle(false);
             $('.search-profile').toggle(false);
-            $('.online-users').toggle(false);
-            $('.login-block').toggle(true);
+            $('#wrapper').toggle(false);
+            $('.login-block').toggle(false);
+            $('.forgot-login-link').toggle(false);
         })
 
         $('#login-button').bind('click', function () {
             app.logIn();
+        })
+
+        $('#sign-up-button').bind('click', function () {
+            app.signUp();
+            $('#header').text('Dark Room');
+        })
+
+        $('#next-button').bind('click', function () {
+            app.next();
+            $('#header').text('Profile Settings');
         })
 
         $('#save-info-button').bind('click', function () {
@@ -130,18 +180,58 @@ var app = {
 
         $('#record-complete-button').bind('click', function () {
             $('.new-user-registration-link').toggle(false);
-            $('.new-user-registration').toggle(false);
+            $('.new-user-registration-password').toggle(false);
+            $('.new-user-registration-email').toggle(false);
             $('.profile').slideToggle(true);
             $('.audio').toggle(false);
             $('.search-profile').toggle(false);
-            $('.online-users').toggle(false);
+            $('#wrapper').toggle(false);
             $('.login-block').toggle(false);
+            $('.forgot-login-link').toggle(false);
         })
+    },
+
+    signUp: function () {
+        app.clearError();
+        if ($('#new-password-text').val() != '') {
+            if ($('#terms-check').is(":checked")) {
+                if ($('#older-than-21-check').is(":checked")) {
+                    var password = $('#new-password-text').val();
+                    var loginId = app.randomString(6, '#aA');
+                    user.Password = password;
+                    user.LoginId = loginId;
+                    $('#login-id-label').text(loginId);
+
+                    $('.new-user-registration-link').toggle(false);
+                    $('.new-user-registration-password').toggle(false);
+                    $('.new-user-registration-email').toggle(true);
+                    $('.profile').toggle(false);
+                    $('.audio').toggle(false);
+                    $('.search-profile').toggle(false);
+                    $('#wrapper').toggle(false);
+                    $('.login-block').toggle(false);
+                    $('.forgot-login-link').toggle(false);
+                }
+                else {
+                    app.setError('You must be older than 21 years of age to user dark room.');
+                }
+            }
+            else {
+                app.setError('Please check the terms and conditions.');
+            }
+        }
+        else {
+            app.setError('Please enter a new password.');
+        }
+    },
+
+    next: function () {
+        app.saveInfo();
     },
 
     validateEmail: function () {
         var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
-        if (reg.test(user.Email.val()) === false) {
+        if (reg.test($('#email').val()) === false) {
             return false;
         }
         return true;
@@ -179,98 +269,103 @@ var app = {
     recordAudio: function () {
         console.log("recordAudio");
         $('.new-user-registration-link').toggle(false);
-        $('.new-user-registration').toggle(false);
+        $('.new-user-registration-password').toggle(false);
+        $('.new-user-registration-email').toggle(false);
         $('.profile').toggle(false);
         $('.audio').slideToggle(true);
         $('.search-profile').toggle(false);
-        $('.online-users').toggle(false);
+        $('#wrapper').toggle(false);
         $('.login-block').toggle(false);
+        $('.forgot-login-link').toggle(false);
     },
 
     saveInfo: function () {
         console.log('saveInfo');
-        if ($('#terms-check').is(":checked")) {
-            if (app.validateEmail()) {
-                var input =
-                    {
-                        "user": {
-                            "UserId": 0,
-                            "LoginId": user.LoginId,
-                            "Password": user.Password,
-                            "Email": user.Email.val(),
-                            "Sex": null,
-                            "Age": null,
-                            "Weight": null,
-                            "Height": null,
-                            "TimeForDating": null,
-                            "Recording": null
-                        }
-                    };
-                $.ajax({
-                    type: "POST",
-                    url: "http://localhost:36908/DatingService.svc/AddUser",
-                    data: JSON.stringify(input),
-                    contentType: 'application/json; charset=utf-8',
-                    dataType: "json",
-                    success: app.onSaveSuccess,
-                    error: app.onAjaxError
-                });
-            }
-            else {
-                $('.error-label').text('Invalid email address.');
-            }
+        if (app.validateEmail()) {
+            var input =
+                {
+                    "user": {
+                        "UserId": 0,
+                        "LoginId": user.LoginId,
+                        "Password": user.Password,
+                        "Email": $('#email').val(),
+                        "Sex": null,
+                        "Age": null,
+                        "Weight": null,
+                        "Height": null,
+                        "TimeForDating": null,
+                        "Recording": null
+                    }
+                };
+            $.ajax({
+                type: "PUT",
+                url: "http://localhost:36908/DatingService.svc/AddUser",
+                data: JSON.stringify(input),
+                contentType: 'application/json; charset=utf-8',
+                dataType: "json",
+                success: app.onSaveSuccess,
+                error: app.onAjaxError
+            });
         }
         else {
-            $('.error-label').text('Please check the terms and conditions.');
+            app.setError('Invalid email address.');
         }
     },
 
     onSaveSuccess: function (data) {
         $('#userid').val(data.AddUserResult.UserId);
         $('.new-user-registration-link').toggle(false);
-        $('.new-user-registration').toggle(false);
+        $('.new-user-registration-password').toggle(false);
+        $('.new-user-registration-email').toggle(false);        
         $('.profile').slideToggle(true);
         $('.audio').toggle(false);
         $('.search-profile').toggle(false);
-        $('.online-users').toggle(false);
+        $('#wrapper').toggle(false);
         $('.login-block').toggle(false);
+        $('.forgot-login-link').toggle(false);
     },
 
     onAjaxError: function (xhr, ajaxOptions, error) {
-        $('.error-label').text(xhr.responseText);
+        app.setError(xhr.responseText);
     },
 
     saveProfile: function () {
         console.log('saveProfile');
         $('.new-user-registration-link').toggle(false);
-        $('.new-user-registration').toggle(false);
+        $('.new-user-registration-password').toggle(false);
+        $('.new-user-registration-email').toggle(false);
         $('.profile').toggle(false);
         $('.audio').toggle(false);
         $('.search-profile').slideToggle(true);
-        $('.online-users').toggle(false);
+        $('#wrapper').toggle(false);
         $('.login-block').toggle(false);
+        $('.forgot-login-link').toggle(false);
     },
 
     saveSearchPreferences: function () {
         console.log('saveSearchPreferences');
         $('.new-user-registration-link').toggle(false);
-        $('.new-user-registration').toggle(false);
+        $('.new-user-registration-password').toggle(false);
+        $('.new-user-registration-email').toggle(false);
         $('.profile').toggle(false);
         $('.audio').toggle(false);
         $('.search-profile').toggle(false);
-        $('.online-users').slideToggle(true);
+        $('#wrapper').slideToggle(true);
         $('.login-block').toggle(false);
+        $('.forgot-login-link').toggle(false);
     },
 
     recordAudio: function () {
         console.log('recordAudio');
         $('.new-user-registration-link').toggle(false);
-        $('.new-user-registration').toggle(false);
+        $('.new-user-registration-password').toggle(false);
+        $('.new-user-registration-email').toggle(false);
         $('.profile').toggle(false);
         $('.audio').slideToggle(true);
         $('.search-profile').toggle(false);
-        $('.online-users').toggle(false);
+        $('#wrapper').toggle(false);
         $('.login-block').toggle(false);
+        $('.forgot-login-link').toggle(false);
     },
 
     showAlert: function (message, title) {
@@ -290,16 +385,3 @@ var app = {
 };
 
 app.renderSplash();
-
-var user = {
-    UserId: $('#userid'),
-    LoginId: $('#login-id-label').text() != '' ? $('#login-id-label').text() : $('#login-id-text').value(),
-    Password: $('#password-label').text() != '' ? $('#password-label').text() : $('#password-text').value(),
-    Email: $('#email'),
-    Sex: $('#sex'),
-    Age: $('#age'),
-    Weight: $('#weight'),
-    Height: $('#height'),
-    TimeForDating: $('#time-for-dating'),
-    Recording: $('#record-complete-button')
-};

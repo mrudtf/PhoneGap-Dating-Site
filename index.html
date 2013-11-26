@@ -5,7 +5,11 @@
 </head>
 <body>
     <div class="splash">
-        <div><h1>Dark Room</h1></div>
+        <div>
+            <input type="button" id="header-left-button" value="Left" />
+            <h1><label id="header">Dark Room</label></h1>
+            <input type="button" id="header-right-button" value="Right" />
+        </div>
         <div class="app-img">
             <img src="img/Andy_Bernard.jpg" />
         </div>
@@ -18,26 +22,42 @@
     <div hidden="hidden">
         <input type="hidden" id="userid" value=" " />
     </div>
-    <div class="new-user-registration">
-        The auto generated login id and passwords are:
+    <div class="new-user-registration-password">
+        <h2>Create your Dark Room Account</h2>
+        <p></p>
         <div class="input-line">
-            <label>Login Id</label>
-            <label id="login-id-label"></label>
+            <label>Login</label>
+            <input type="password" id="new-password-text" />
         </div>
         <div class="input-line">
             <label>Password</label>
-            <label id="password-label"></label>
+            <input type="password" id="new-password-text" />
+        </div>
+        <div class="input-line">
+            <label>I agree to the dark room terms of service and privacy policy.</label>
+            <input type="checkbox" id="terms-check" />
+        </div>
+        <div class="input-line">
+            <label>I am older than 21 years of age</label>
+            <input type="checkbox" id="older-than-21-check" />
+        </div>
+        <div class="input-line">
+            <input type="button" id="sign-up-button" value="Sign up" />
+        </div>
+    </div>
+    <div class="new-user-registration-email">
+        <h2>Your Login Details</h2>
+        <p></p>
+        <div class="input-line">
+            <label id="login-id-desc">Your login</label>
+            <label id="login-id-label"></label>
         </div>
         <div class="input-line">
             <label>Enter email</label>
             <input type="text" id="email" />
         </div>
         <div class="input-line">
-            <label>Terms and Conditions</label>
-            <input type="checkbox" id="terms-check" />
-        </div>
-        <div class="input-line">
-            <input type="button" id="save-info-button" value="Save user info" />
+            <input type="button" id="next-button" value="Next" />
         </div>
     </div>
     <div class="profile">
@@ -59,6 +79,13 @@
         <div class="input-line">
             <label>Height (cms)</label>
             <input type="range" id="height" min="160" max="210" />
+        </div>
+        <div class="input-line">
+            <label>Time for Dating</label>
+            <select id="timezone">
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
         </div>
         <div class="input-line">
             <label>Time for Dating</label>
@@ -116,35 +143,12 @@
             <input type="button" id="save-search-profile-button" value="Save search profile" />
         </div>
     </div>
-    <div class="online-users">
-        <div class="input-line">
-            <label>Sex</label>
-            <input type="text" list="sex" id="sex-list">
-            <datalist id="sex">
-                <option value="0"> Male</option>
-                <option value="1"> Female</option>
-            </datalist>
-        </div>
-        <div class="input-line">
-            <label>Age</label>
-            <input type="range" id="age" min="18" max="50" />
-        </div>
-        <div class="input-line">
-            <label>Weight (kgs)</label>
-            <input type="range" id="weight" min="45" max="100" />
-        </div>
-        <div class="input-line">
-            <label>Height (cms)</label>
-            <input type="range" id="height" min="160" max="210" />
-        </div>
-        <div class="input-line">
-            <label>Time for Dating</label>
-            <input type="datetime" id="time-for-dating" />
-        </div>
+    <div id="wrapper">
+        <ul id="userList" class="icon-list"></ul>
     </div>
     <div class="login-block">
         <div class="input-line">
-            <label>Login Id</label>
+            <label>Account Login</label>
         </div>
         <div class="input-line">
             <input type="text" id="login-id-text" />
@@ -153,7 +157,7 @@
             <label>Password</label>
         </div>
         <div class="input-line">
-            <input type="text" id="password-text" />
+            <input type="password" id="password-text" />
         </div>
         <div class="input-line">
             <label><input type="checkbox" id="save-login" />Save login</label>
@@ -162,12 +166,19 @@
             <input type="button" id="login-button" value="Login" />
         </div>
     </div>
-    <div class="new-user-registration-link">Need an account?         
+    <div class="new-user-registration-link">
+        Need an account?
         <a id="new-user-button" href="#">Sign Up</a>
+    </div>
+    <div class="forgot-login-link">
+        Forgot login?
+        <a id="forgot-login-button" href="#">Click here</a>
     </div>
     <script src="phonegap.js"></script>
     <script src="lib/jquery-1.8.2.min.js"></script>
+    <script src="lib/iscroll.js"></script>
     <script src="js/storage/ls-store.js"></script>
+    <script src="js/user.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>
