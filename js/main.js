@@ -384,4 +384,5 @@ var app = {
     }
 };
 
-app.renderSplash();
+//app.renderSplash();
+app.initialize();
