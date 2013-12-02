@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Contact List</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1, target-densityDpi=device-dpi" />
+    <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+    <div>
+        <input type="button" id="back" value="Search Preferences" />
+        <h1><label id="header">Contact List</label></h1>
+    </div>
+    <div>
+        <input type="button" id="all" value="all" />|
+        <input type="button" id="online" value="online" />
+    </div>
+    <div id="wrapper">
+        <ul id="userList" class="icon-list"></ul>
+    </div>
+    <div id="busy">Loading...</div>
+    <div>
+        <input type="button" id="number-of-contacts" value="contact" class="contacts" />|
+        <input type="button" id="search-preferences" value="search" class="search-preferences" />|
+        <input type="button" id="profile" value="edit profile" class="profile" />|
+    </div>
+    <script src="phonegap.js"></script>
+    <script src="lib/jquery-1.8.2.min.js"></script>
+    <script src="lib/iscroll.js"></script>
+    <script src="js/storage/ls-store.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/contactlist.js"></script>
+</body>
+</html>

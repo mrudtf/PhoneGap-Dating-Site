@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Search Preferences</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1, target-densityDpi=device-dpi" />
+    <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+    <div>
+        <input type="button" id="back" value="Back" />
+        <h1><label id="header">Search Preferences</label></h1>
+        <input type="button" id="update" value="Update" />
+    </div>
+    <div id="wrapper">
+        <div>
+            <div class="input-line" id="search-sex-div">
+                <label>Sex</label>
+                <input type="checkbox"
+                       id="check-man"
+                       value="1" />
+                <label for="check-man">Man</label>
+                <input type="checkbox"
+                       id="check-woman"
+                       value="2" />
+                <label for="check-woman">Woman</label>
+                <input type="checkbox"
+                       id="check-neutral"
+                       value="3" />
+                <label for="check-neutral">Neutral</label>
+            </div>
+            <div class="input-line" id="search-user-type-div">
+                <label>User types</label>
+                <input type="checkbox"
+                       id="check-platinum"
+                       value="1" />
+                <label for="check-platinum">Platinum user</label>
+                <input type="checkbox"
+                       id="check-gold"
+                       value="2" />
+                <label for="check-gold">Gold user</label>
+                <input type="checkbox"
+                       id="check-silver"
+                       value="3" />
+                <label for="check-silver">Silver user</label>
+                <input type="checkbox"
+                       id="check-bronze"
+                       value="4" />
+                <label for="check-bronze">Bronze user</label>
+                <input type="checkbox"
+                       id="check-unsubscribed"
+                       value="5" />
+                <label for="check-unsubscribed">Unsubscribed user</label>
+            </div>
+            <div class="input-line">
+                <label>Age</label>
+                <div>
+                    <input type="text" class="sliderValue-age" data-index="23" value="23" />
+                    <input type="text" class="sliderValue-age" data-index="45" value="45" />
+                </div>
+                <br />
+                <div id="slider-age"></div>
+            </div>
+            <div class="input-line">
+                <label>Weight (kgs)</label>
+                <input type="range" id="weight" min="45" max="100" />
+            </div>
+            <div class="input-line">
+                <label>Height (cms)</label>
+                <input type="range" id="height" min="160" max="210" />
+            </div>
+            <div class="input-line">
+                <label>Time for Dating</label>
+                <input type="datetime" id="time-for-dating" />
+            </div>
+            <div class="input-line">
+                <input type="button" id="save-search-profile-button" value="Save search profile" />
+            </div>
+        </div>
+    </div>
+    <script src="phonegap.js"></script>
+    <script src="lib/jquery-1.8.2.min.js"></script>
+    <script src="lib/iscroll.js"></script>
+    <script src="js/storage/ls-store.js"></script>
+    <script src="js/user.js"></script>
+    <script src="js/searchpreferences.js"></script>
+</body>
+</html>

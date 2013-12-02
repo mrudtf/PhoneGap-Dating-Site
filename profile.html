@@ -1,0 +1,133 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Profile Settings</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1, target-densityDpi=device-dpi" />
+    <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+    <div>
+        <input type="button" id="back" value="Back" />
+        <h1><label id="header">Contact List</label></h1>
+        <input type="button" id="edit" value="Edit" />
+    </div>
+    <div id="wrapper">
+        <div>
+            <div class="input-line">
+                <label>Sex</label>
+                <select id="sex">
+                    <option value="1">Male</option>
+                    <option value="2">Female</option>
+                    <option value="3">Neutral</option>
+                </select>
+            </div>
+            <div class="input-line">
+                <label>Age</label>
+                <input type="range" id="age" min="18" max="50" />
+                <input type="text" id="age-text" readonly />
+            </div>
+            <div class="input-line">
+                <label>Weight (kgs)</label>
+                <input type="range" id="weight" min="45" max="100" />
+                <input type="text" id="weight-text" readonly />
+            </div>
+            <div class="input-line">
+                <label>Height (cms)</label>
+                <input type="range" id="height" min="160" max="210" />
+                <input type="text" id="height-text" readonly />
+            </div>
+            <div class="input-line">
+                <label>TimeZone</label>
+                <select id="timezone">
+                    <option value="1">Sydney</option>
+                    <option value="2">Moscow</option>
+                    <option value="3">New York</option>
+                </select>
+            </div>
+            <div class="input-line" id="language-div">
+                <label>Languages spoken</label>
+                <input type="checkbox"
+                       id="check-english"
+                       value="1" />
+                <label for="check-english">English</label>
+                <input type="checkbox"
+                       id="check-russian"
+                       value="2" />
+                <label for="check-russian">Russian</label>
+                <input type="checkbox"
+                       id="check-spanish"
+                       value="3" />
+                <label for="check-spanish">Spanish</label>
+                <input type="checkbox"
+                       id="check-french"
+                       value="4" />
+                <label for="check-french">French</label>
+            </div>
+            <div class="input-line">
+                <label>Body type</label>
+                <select id="body-type">
+                    <option value="1">Slim</option>
+                    <option value="2">Average</option>
+                    <option value="3">Fat</option>
+                </select>
+            </div>
+            <div class="input-line">
+                <label>Ethnic background</label>
+                <select id="ethnic-background">
+                    <option value="1">Ethnic1</option>
+                    <option value="2">Ethnic2</option>
+                    <option value="3">Ethnic3</option>
+                </select>
+            </div>
+            <div class="input-line">
+                <label>Smoking habit</label>
+                <select id="smoking-habit">
+                    <option value="1">Occasional</option>
+                    <option value="2">Heavy</option>
+                    <option value="3">None</option>
+                </select>
+            </div>
+            <div class="input-line">
+                <label>Relationship status</label>
+                <select id="relationship-status">
+                    <option value="1">Relation1</option>
+                    <option value="2">Relation2</option>
+                    <option value="3">Relation3</option>
+                </select>
+            </div>
+            <div class="input-line" id="limits-div">
+                <label>Limits</label>
+                <input type="checkbox"
+                       id="check-convetional"
+                       value="Conventional" />
+                <label for="check-convetional">Conventional Sex</label>
+                <input type="checkbox"
+                       id="check-threesome"
+                       value="Threesome" />
+                <label for="check-threesome">Threesome</label>
+                <input type="checkbox"
+                       id="check-blindfolding"
+                       value="Blindfolding" />
+                <label for="check-blindfolding">Blindfolding</label>
+                <input type="checkbox"
+                       id="check-cuddling-hugging"
+                       value="cuddlinghugging" />
+                <label for="check-cuddling-hugging">Cuddling &amp; Hugging</label>
+            </div>
+            <div class="input-line">
+                <label>Default recording</label>
+                <input type="button" id="record-audio-button" value="Record audio" />
+            </div>
+            <div class="input-line">
+                <input type="button" id="save-profile-button" value="Save and update profile" />
+            </div>
+        </div>
+    </div>
+    <script src="phonegap.js"></script>
+    <script src="lib/jquery-1.8.2.min.js"></script>
+    <script src="lib/iscroll.js"></script>
+    <script src="js/storage/ls-store.js"></script>
+    <script src="js/user.js"></script>
+    <script src="js/profile.js"></script>
+</body>
+</html>

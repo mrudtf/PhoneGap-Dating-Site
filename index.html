@@ -5,17 +5,17 @@
 </head>
 <body>
     <div class="splash">
-        <div>
-            <input type="button" id="header-left-button" value="Left" />
-            <h1><label id="header">Dark Room</label></h1>
-            <input type="button" id="header-right-button" value="Right" />
-        </div>
         <div class="app-img">
             <img src="img/Andy_Bernard.jpg" />
         </div>
     </div>
     <div class="busy">Loading...</div>
-    <div class="header"><h1>Dark Room</h1></div>
+    <div>
+        <input type="button" id="header-left-button" value="Left" />
+        <h1><label id="header">Dark Room</label></h1>
+        <input type="button" id="header-right-button" value="Edit" />
+    </div>
+    <!--<div class="header"><h1>Dark Room</h1></div>-->
     <div>
         <label class="error-label"></label>
     </div>
@@ -27,19 +27,23 @@
         <p></p>
         <div class="input-line">
             <label>Login</label>
-            <input type="password" id="new-password-text" />
+            <input type="text" id="new-login-text" readonly />
         </div>
         <div class="input-line">
             <label>Password</label>
             <input type="password" id="new-password-text" />
         </div>
         <div class="input-line">
+            <label>Secure code</label>
+            <input type="text" id="new-secure-code" />
+        </div>
+        <div class="input-line">
             <label>I agree to the dark room terms of service and privacy policy.</label>
-            <input type="checkbox" id="terms-check" />
+            <input type="checkbox" id="check-terms" />
         </div>
         <div class="input-line">
             <label>I am older than 21 years of age</label>
-            <input type="checkbox" id="older-than-21-check" />
+            <input type="checkbox" id="check-older-than-21" />
         </div>
         <div class="input-line">
             <input type="button" id="sign-up-button" value="Sign up" />
@@ -50,53 +54,157 @@
         <p></p>
         <div class="input-line">
             <label id="login-id-desc">Your login</label>
-            <label id="login-id-label"></label>
+            <label id="login-id-label" style="color:red;"></label>
         </div>
         <div class="input-line">
-            <label>Enter email</label>
+            <label>Enter email (optional)</label>
             <input type="text" id="email" />
         </div>
         <div class="input-line">
             <input type="button" id="next-button" value="Next" />
         </div>
     </div>
-    <div class="profile">
+    <!--<div class="profile">
+        <div>
+            <div class="input-line">
+                <label>Sex</label>
+                <select id="sex">
+                    <option value="1">Male</option>
+                    <option value="2">Female</option>
+                    <option value="3">Neutral</option>
+                </select>
+            </div>
+            <div class="input-line">
+                <label>Age</label>
+                <input type="range" id="age" min="18" max="50" />
+                <input type="text" id="age-text" readonly />
+            </div>
+            <div class="input-line">
+                <label>Weight (kgs)</label>
+                <input type="range" id="weight" min="45" max="100" />
+                <input type="text" id="weight-text" readonly />
+            </div>
+            <div class="input-line">
+                <label>Height (cms)</label>
+                <input type="range" id="height" min="160" max="210" />
+                <input type="text" id="height-text" readonly />
+            </div>
+            <div class="input-line">
+                <label>TimeZone</label>
+                <select id="timezone">
+                    <option value="1">Sydney</option>
+                    <option value="2">Moscow</option>
+                    <option value="3">New York</option>
+                </select>
+            </div>
+            <div class="input-line" id="language-div">
+                <label>Languages spoken</label>
+                <input type="checkbox"
+                       id="check-english"
+                       value="1" />
+                <label for="check-english">English</label>
+                <input type="checkbox"
+                       id="check-russian"
+                       value="2" />
+                <label for="check-russian">Russian</label>
+                <input type="checkbox"
+                       id="check-spanish"
+                       value="3" />
+                <label for="check-spanish">Spanish</label>
+                <input type="checkbox"
+                       id="check-french"
+                       value="4" />
+                <label for="check-french">French</label>
+            </div>
+            <div class="input-line">
+                <label>Body type</label>
+                <select id="body-type">
+                    <option value="1">Slim</option>
+                    <option value="2">Average</option>
+                    <option value="3">Fat</option>
+                </select>
+            </div>
+            <div class="input-line">
+                <label>Ethnic background</label>
+                <select id="ethnic-background">
+                    <option value="1">Ethnic1</option>
+                    <option value="2">Ethnic2</option>
+                    <option value="3">Ethnic3</option>
+                </select>
+            </div>
+            <div class="input-line">
+                <label>Smoking habit</label>
+                <select id="smoking-habit">
+                    <option value="1">Occasional</option>
+                    <option value="2">Heavy</option>
+                    <option value="3">None</option>
+                </select>
+            </div>
+            <div class="input-line">
+                <label>Relationship status</label>
+                <select id="relationship-status">
+                    <option value="1">Relation1</option>
+                    <option value="2">Relation2</option>
+                    <option value="3">Relation3</option>
+                </select>
+            </div>
+            <div class="input-line" id="limits-div">
+                <label>Limits</label>
+                <input type="checkbox"
+                       id="check-convetional"
+                       value="Conventional" />
+                <label for="check-convetional">Conventional Sex</label>
+                <input type="checkbox"
+                       id="check-threesome"
+                       value="Threesome" />
+                <label for="check-threesome">Threesome</label>
+                <input type="checkbox"
+                       id="check-blindfolding"
+                       value="Blindfolding" />
+                <label for="check-blindfolding">Blindfolding</label>
+                <input type="checkbox"
+                       id="check-cuddling-hugging"
+                       value="cuddlinghugging" />
+                <label for="check-cuddling-hugging">Cuddling &amp; Hugging</label>
+            </div>
+            <div class="input-line">
+                <label>Default recording</label>
+                <input type="button" id="record-audio-button" value="Record audio" />
+            </div>
+            <div class="input-line">
+                <input type="button" id="save-profile-button" value="Save and update profile" />
+            </div>
+        </div>
+    </div>-->
+    <div class="security">
         <div class="input-line">
-            <label>Sex</label>
-            <select id="sex">
-                <option value="male">Male</option>
-                <option value="female">Female</option>
+            <input type="button" id="save-security-button" value="Save" />
+        </div>
+        <div class="input-line">
+            <label>App Language</label>
+            <select id="app-language">
+                <option value="1">English</option>
+                <option value="2">Russian</option>
+                <option value="3">French</option>
             </select>
         </div>
         <div class="input-line">
-            <label>Age</label>
-            <input type="range" id="age" min="18" max="50" />
+            <label>Forget login</label>
+            <div class="onoffswitch">
+                <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
+                <label class="onoffswitch-label" for="myonoffswitch">
+                    <div class="onoffswitch-inner"></div>
+                    <div class="onoffswitch-switch"></div>
+                </label>
+            </div>
         </div>
         <div class="input-line">
-            <label>Weight (kgs)</label>
-            <input type="range" id="weight" min="45" max="100" />
+            <div><label>Terms and conditions</label><a id="terms-link" href="#">></a></div>
+            <div id="terms-div" hidden="hidden">This is the terms and conditions of Dark room.</div>
         </div>
         <div class="input-line">
-            <label>Height (cms)</label>
-            <input type="range" id="height" min="160" max="210" />
-        </div>
-        <div class="input-line">
-            <label>Time for Dating</label>
-            <select id="timezone">
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-            </select>
-        </div>
-        <div class="input-line">
-            <label>Time for Dating</label>
-            <input type="datetime" id="time-for-dating" />
-        </div>
-        <div class="input-line">
-            <label>Default recording</label>
-            <input type="button" id="record-audio-button" value="Record audio" />
-        </div>
-        <div class="input-line">
-            <input type="button" id="save-profile-button" value="Save and update profile" />
+            <div><label>Privacy statement</label><a id="privacy-link" href="#">></a></div>
+            <div id="privacy-div" hidden="hidden">This is the privacy statement of Dark room.</div>
         </div>
     </div>
     <div class="audio">
@@ -114,18 +222,53 @@
             <input type="button" id="record-complete-button" value="Back to profile" />
         </div>
     </div>
-    <div class="search-profile">
-        <div class="input-line">
+    <!--<div id="wrapper" class="search-profile">
+        <div class="input-line" id="search-sex-div">
             <label>Sex</label>
-            <input type="text" list="sex" id="sex-list">
-            <datalist id="sex">
-                <option> Male
-                <option> Female
-            </datalist>
+            <input type="checkbox"
+                   id="check-man"
+                   value="1" />
+            <label for="check-man">Man</label>
+            <input type="checkbox"
+                   id="check-woman"
+                   value="2" />
+            <label for="check-woman">Woman</label>
+            <input type="checkbox"
+                   id="check-neutral"
+                   value="3" />
+            <label for="check-neutral">Neutral</label>
+        </div>
+        <div class="input-line" id="search-user-type-div">
+            <label>User types</label>
+            <input type="checkbox"
+                   id="check-platinum"
+                   value="1" />
+            <label for="check-platinum">Platinum user</label>
+            <input type="checkbox"
+                   id="check-gold"
+                   value="2" />
+            <label for="check-gold">Gold user</label>
+            <input type="checkbox"
+                   id="check-silver"
+                   value="3" />
+            <label for="check-silver">Silver user</label>
+            <input type="checkbox"
+                   id="check-bronze"
+                   value="4" />
+            <label for="check-bronze">Bronze user</label>
+            <input type="checkbox"
+                   id="check-unsubscribed"
+                   value="5" />
+            <label for="check-unsubscribed">Unsubscribed user</label>
         </div>
         <div class="input-line">
             <label>Age</label>
-            <input type="range" id="age" min="18" max="50" />
+            <div>
+                <input type="text" class="sliderValue-age" data-index="23" value="23" />
+                <input type="text" class="sliderValue-age" data-index="45" value="45" />
+            </div>
+            <br />
+            <div id="slider-age"></div>
         </div>
         <div class="input-line">
             <label>Weight (kgs)</label>
@@ -142,7 +285,7 @@
         <div class="input-line">
             <input type="button" id="save-search-profile-button" value="Save search profile" />
         </div>
-    </div>
+    </div>-->
     <div id="wrapper">
         <ul id="userList" class="icon-list"></ul>
     </div>
@@ -160,7 +303,7 @@
             <input type="password" id="password-text" />
         </div>
         <div class="input-line">
-            <label><input type="checkbox" id="save-login" />Save login</label>
+            <label><input type="checkbox" id="check-save-login" />Save login</label>
         </div>
         <div class="input-line">
             <input type="button" id="login-button" value="Login" />
@@ -174,9 +317,33 @@
         Forgot login?
         <a id="forgot-login-button" href="#">Click here</a>
     </div>
+    <div class="bottom-bar-1">
+        <div style="text-align:center; vertical-align:central;">
+            <input type="button" id="save-image" value="Save Image" />
+            <input type="button" id="email-login-password" value="Email Login" />
+            <input type="button" id="next" value="Next" />
+        </div>
+    </div>
+    <div class="bottom-bar-2">
+        <div style="text-align:center; vertical-align:central;">
+            <input type="button" id="subscription-payment" value="Subscription" />
+            <input type="button" id="secure-information-editing" value="Secure Edit" />
+            <input type="button" id="about" value="About" />
+        </div>
+    </div>
+    <div class="about">
+        <div class="input-line">
+            <label>About Dark room</label>
+        </div>
+        <div class="input-line">
+            <label>Creators</label>
+            <label>Alexey Prokopenko</label>
+        </div>
+    </div>
     <script src="phonegap.js"></script>
     <script src="lib/jquery-1.8.2.min.js"></script>
     <script src="lib/iscroll.js"></script>
+    <script src="lib/handlebars.js"></script>
     <script src="js/storage/ls-store.js"></script>
     <script src="js/user.js"></script>
     <script src="js/main.js"></script>
